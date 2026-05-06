@@ -19,8 +19,8 @@ BACKENDS = {
     "together": ModelConfig(
         base_url="https://api.together.xyz/v1",
         api_key=os.getenv("TOGETHER_API_KEY", ""),
-        model="meta-llama/Llama-3.3-70B-Instruct-Turbo",
-        enable_thinking=False,
+        model="Qwen/Qwen3-235B-A22B-Instruct-2507-tput",
+        enable_thinking=True,
     ),
     "openai": ModelConfig(
         base_url="https://api.openai.com/v1",
