@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tunedai"
+version = "0.1.0"
+description = "Reasoning-native terminal coding agent — shows causal thinking before acting"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = [
+    "openai>=1.30.0",
+    "rich>=13.7.0",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.20.0"]
+
+[project.urls]
+Homepage = "https://github.com/tunedailabs/tunedai-agent"
+
+[project.scripts]
+tunedai = "tunedai.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tunedai"]
