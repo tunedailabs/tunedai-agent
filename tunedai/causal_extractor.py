@@ -3,7 +3,7 @@ causal_extractor.py — Extract causal claims from Reasoner output.
 
 Takes the Reasoner's thinking + conclusion and returns a structured
 causal claim: (cause, effect, mechanism, proposed_fix) tuples that
-can be fed directly into the RungsX verifier.
+can be fed directly into the causal verifier.
 
 Uses a lightweight LLM call — cheap, fast, no tool calls.
 """

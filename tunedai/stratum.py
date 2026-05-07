@@ -251,7 +251,7 @@ class StratumLoop:
             thinking_log.extend(turn_thinking)
             conclusion = turn_conclusion
 
-            # ── RungsX causal verification ─────────────────────────────
+            # ── Stratum causal verification ────────────────────────────
             causal_verdict = None
             try:
                 claim = extract_causal_claim(
@@ -260,35 +260,35 @@ class StratumLoop:
                     config=self.config,
                 )
                 causal_verdict = causal_verify(claim)
-                rungsx_event = {
-                    "type": "rungsx",
+                verify_event = {
+                    "type": "causal_verify",
                     "data": causal_verdict.to_dict(),
                 }
                 if display_fn:
-                    display_fn(rungsx_event)
-                yield rungsx_event
+                    display_fn(verify_event)
+                yield verify_event
             except Exception:
                 pass  # verification is non-blocking
 
             # ── Critic turn ────────────────────────────────────────────
-            # Inject RungsX verdict into Critic context if available
-            rungsx_context = ""
+            # Inject causal verdict into Critic context if available
+            verify_context = ""
             if causal_verdict and causal_verdict.status != "SKIP":
-                rungsx_context = (
-                    f"\n\nRungsX CAUSAL VERIFICATION:\n{causal_verdict.summary()}"
+                verify_context = (
+                    f"\n\nSTRATUM CAUSAL VERIFICATION:\n{causal_verdict.summary()}"
                 )
 
             verdict, critic_text = self._call_critic(
                 task=task,
                 thinking_log="\n\n".join(thinking_log),
-                conclusion=conclusion + rungsx_context,
+                conclusion=conclusion + verify_context,
             )
 
             self.debate_log.append({
                 "iteration": iteration,
                 "thinking": "\n".join(turn_thinking),
                 "conclusion": conclusion,
-                "rungsx": causal_verdict.to_dict() if causal_verdict else None,
+                "causal_verdict": causal_verdict.to_dict() if causal_verdict else None,
                 "verdict": verdict,
                 "critic": critic_text,
             })

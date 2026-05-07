@@ -106,7 +106,7 @@ def render_stratum_iteration(iteration: int, max_iter: int):
     ))
 
 
-def render_rungsx(data: dict):
+def render_causal_verify(data: dict):
     status = data.get("status", "SKIP")
     claim  = data.get("claim", {})
     cause  = claim.get("proposed_cause", "?")
@@ -168,8 +168,8 @@ def display_event(event: dict):
         render_response(event["data"])
     elif t == "critic":
         render_critic(event["data"]["verdict"], event["data"]["text"])
-    elif t == "rungsx":
-        render_rungsx(event["data"])
+    elif t == "causal_verify":
+        render_causal_verify(event["data"])
     elif t == "stratum_iteration":
         render_stratum_iteration(event["data"]["iteration"], event["data"]["max"])
     elif t == "stratum_final":
