@@ -13,7 +13,7 @@ from openai import OpenAI
 from .config import ModelConfig
 from . import tools as T
 from .causal_extractor import extract_causal_claim
-from .rungsx_verifier import verify as rungsx_verify
+from .causal_verifier import verify as causal_verify
 
 
 REASONER_PROMPT = """\
@@ -259,7 +259,7 @@ class StratumLoop:
                     conclusion=conclusion,
                     config=self.config,
                 )
-                causal_verdict = rungsx_verify(claim)
+                causal_verdict = causal_verify(claim)
                 rungsx_event = {
                     "type": "rungsx",
                     "data": causal_verdict.to_dict(),

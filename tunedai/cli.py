@@ -120,7 +120,7 @@ def render_rungsx(data: dict):
     if status == "SKIP":
         console.print(Panel(
             f"[dim]SKIP — {reason}[/dim]",
-            title="[bold dim]RUNGSX[/bold dim]",
+            title="[bold dim]CAUSAL VERIFIER[/bold dim]",
             border_style="dim", box=box.SIMPLE_HEAD,
         ))
     elif status == "VALID":
@@ -131,7 +131,7 @@ def render_rungsx(data: dict):
             f"  [dim]Paths before:[/dim] {before}  [dim]blocked:[/dim] {blocked}  "
             f"[dim]residual:[/dim] [green]{after}[/green]"
         )
-        console.print(Panel(lines, title="[bold green]RUNGSX[/bold green]",
+        console.print(Panel(lines, title="[bold green]CAUSAL VERIFIER[/bold green]",
                             border_style="green", box=box.SIMPLE_HEAD))
     else:
         lines = (
@@ -139,7 +139,7 @@ def render_rungsx(data: dict):
             f"  [dim]{reason}[/dim]\n"
             f"  [dim]Residual open paths:[/dim] [red]{after}[/red]"
         )
-        console.print(Panel(lines, title="[bold red]RUNGSX[/bold red]",
+        console.print(Panel(lines, title="[bold red]CAUSAL VERIFIER[/bold red]",
                             border_style="red", box=box.SIMPLE_HEAD))
 
 

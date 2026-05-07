@@ -9,3 +9,7 @@ build/
 .venv/
 venv/
 .DS_Store
+
+# Private enterprise causal engine — not distributed in open source
+tunedai/_causal_engine.py
+tunedai/rungsx_verifier.py
